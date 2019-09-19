@@ -2,10 +2,12 @@ package io.xiaoyao.algorithm;
 
 import io.xiaoyao.algorithm.common.ListNode;
 
+import java.util.PriorityQueue;
+
 /**
  * 合并k个已排序的list， leetcode 23
  * <p>
- * 时间复杂度 O(nlogk) n 为每个list元素个数，k为list个数
+ * 时间复杂度 O(nlgk) n 为每个list元素个数，k为list个数
  * 空间复杂度 O(n)
  */
 public class MergeKSortedList {
@@ -41,7 +43,31 @@ public class MergeKSortedList {
         }
     }
 
+    /**
+     1 2 3
+     4 5 6
+     7 8 9
+     *
+     * 用PriorityQueue实现，时间复杂度也为 nlgk
+     */
+    public static ListNode mergeWithPriorityQueue(ListNode[] lists) {
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (o1, o2) -> o1.value - o2.value);
+        for (ListNode list : lists) {
+            queue.add(list);
+        }
 
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (!queue.isEmpty()) {
+            cur.next = queue.poll();
+            cur = cur.next;
+            if (cur.next != null) {
+                queue.add(cur.next);
+            }
+        }
+
+        return dummy.next;
+    }
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(2, 4, 7);
@@ -49,8 +75,8 @@ public class MergeKSortedList {
         ListNode l3 = new ListNode(9, 33, 35);
 
         ListNode[] lists = {l1, l2, l3};
-        ListNode sort = sort(lists);
-        System.out.println(sort);
+//        System.out.println(sort(lists));
+        System.out.println(mergeWithPriorityQueue(lists));
     }
 
 }
