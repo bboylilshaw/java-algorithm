@@ -7,6 +7,17 @@ import java.util.Arrays;
  */
 public class QuickSortExample {
 
+    public static void quickSort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    public static void quickSort(int[] arr, int left, int right) {
+        if (left >= right) return;
+        int pivotPos = partition(arr, left, right);
+        quickSort(arr, left, pivotPos - 1);
+        quickSort(arr, pivotPos + 1, right);
+    }
+
     public static int partition(int[] arr, int left, int right) {
         int pivot = arr[left];
         int pivotPosition = left;
@@ -30,17 +41,9 @@ public class QuickSortExample {
         arr[right] = tmp;
     }
 
-
-    public static void quickSort(int[] arr, int left, int right) {
-        if (left >= right) return;
-        int pivotPos = partition(arr, left, right);
-        quickSort(arr, left, pivotPos - 1);
-        quickSort(arr, pivotPos + 1, right);
-    }
-
     public static void main(String[] args) {
-        int[] nums = new int[]{4, 5, 1, 2, 3};
-        quickSort(nums, 0, nums.length - 1);
+        int[] nums = new int[]{4, 5, 1, 2, 3, 2, 45, 4, 5, 1};
+        quickSort(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
