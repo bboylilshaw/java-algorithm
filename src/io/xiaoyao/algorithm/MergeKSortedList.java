@@ -59,10 +59,11 @@ public class MergeKSortedList {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
         while (!queue.isEmpty()) {
-            cur.next = queue.poll();
+            ListNode n = queue.poll();
+            cur.next = n;
             cur = cur.next;
-            if (cur.next != null) {
-                queue.add(cur.next);
+            if (n.next != null) {
+                queue.add(n.next);
             }
         }
 
