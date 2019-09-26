@@ -2,12 +2,11 @@ package io.xiaoyao.algorithm;
 
 import io.xiaoyao.algorithm.common.SwapUtil;
 
-import javax.swing.*;
 import java.util.PriorityQueue;
 
 /**
- * @author Jason Xiao
- * @date 2019/9/20
+ * 找出数组中第K个大的元素
+ * 例如，给出[1, 4, 6, 5], 找出第2大的元素，返回5
  */
 public class KthLargestElementInArray {
 
