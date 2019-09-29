@@ -2,7 +2,9 @@ package io.xiaoyao.algorithm;
 
 import io.xiaoyao.algorithm.common.SwapUtil;
 
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * 找出数组中第K个大的元素
@@ -15,9 +17,20 @@ public class KthLargestElementInArray {
      * 方法1
      * 快排的变种，在快排寻找pivot的过程中找到第k大的数字
      */
-    public static int find(int[] arr, int k) {
-        if (k > arr.length) throw new RuntimeException();
-        return find(arr, 0, arr.length - 1, k);
+    public static int findKth1(int[] nums, int k) {
+        if (k <=0 || k > nums.length) throw new IllegalArgumentException();
+        //因为数组中有重复元素，先去重
+        Set<Integer> sets = new HashSet<>(nums.length);
+        int[] dedupedNums = new int[nums.length];
+        int i = 0;
+        for (int num : nums) {
+            if (!sets.contains(num)) {
+                sets.add(num);
+                dedupedNums[i++] = num;
+            }
+        }
+
+        return find(dedupedNums, 0, dedupedNums.length - 1, k);
     }
 
     public static int find(int[] arr, int left, int right, int k) {
@@ -53,23 +66,32 @@ public class KthLargestElementInArray {
     /**
      * 方法2
      * 用最小顶堆实现，一个个数字加到堆里，堆里保持k个元素，遍历完，堆顶就是第k大的数字
-     *
      * ps，取第k大的用小顶堆，取第k小的用大顶堆
      */
-    public static int findKth(int[] arr, int k) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        for (int i : arr) {
-            queue.add(i);
+    public static int findKth2(int[] nums, int k) {
+        if (k <= 0 || k > nums.length) throw new IllegalArgumentException();
+        Set<Integer> numSet = new HashSet<>(nums.length);
+        PriorityQueue<Integer> queue = new PriorityQueue<>(k);
+        for (int i : nums) {
+            //处理重复元素，若数组没有重复，直接queue.offer(i)
+            if (!numSet.contains(i)) {
+                numSet.add(i);
+                queue.offer(i);
+            }
+
             if (queue.size() > k) {
                 queue.poll();
             }
         }
-        return queue.poll();
+        return queue.peek();
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{4, 5, 1, 2, 3, 4, 4, 4, 7};
-        System.out.println(find(nums, 2));//第二大应该输出5
-        System.out.println(findKth(nums, 2));//第二大应该输出5
+        int[] nums1 = new int[]{4, 1, 2, 3, 4, 4, 4, 5};
+        int[] nums2 = new int[]{4, 1, 2, 3, 4, 4, 4};
+        System.out.println(findKth1(nums1, 2));//第二大应该输出4
+        System.out.println(findKth2(nums1, 2));//第二大应该输出4
+        System.out.println(findKth2(nums2, 2));//第二大应该输出3
+        System.out.println(findKth2(nums2, 2));//第二大应该输出3
     }
 }
