@@ -1,6 +1,6 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
-import io.xiaoyao.algorithm.common.SwapUtil;
+import common.SwapUtil;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;

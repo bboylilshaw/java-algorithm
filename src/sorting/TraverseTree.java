@@ -1,12 +1,11 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
-import io.xiaoyao.algorithm.common.BiTreeNode;
+import common.BiTreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 

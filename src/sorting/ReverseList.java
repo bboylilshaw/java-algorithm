@@ -1,6 +1,6 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
-import io.xiaoyao.algorithm.common.ListNode;
+import common.ListNode;
 
 /**
  * 反转链表

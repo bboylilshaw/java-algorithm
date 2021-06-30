@@ -1,4 +1,4 @@
-package io.xiaoyao.algorithm.common;
+package common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

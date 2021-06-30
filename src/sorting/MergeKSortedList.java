@@ -1,6 +1,6 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
-import io.xiaoyao.algorithm.common.ListNode;
+import common.ListNode;
 
 import java.util.PriorityQueue;
 

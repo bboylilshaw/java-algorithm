@@ -1,4 +1,4 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
 import java.util.Stack;
 

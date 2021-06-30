@@ -1,4 +1,4 @@
-package io.xiaoyao.algorithm.common;
+package common;
 
 /**
  * @author Jason Xiao

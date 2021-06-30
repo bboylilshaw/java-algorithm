@@ -1,4 +1,4 @@
-package io.xiaoyao.algorithm;
+package sorting;
 
 /**
  * @author Jason Xiao
